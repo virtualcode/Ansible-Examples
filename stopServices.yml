@@ -1,0 +1,16 @@
+--- # Stop and disable system services
+- hosts: localhost
+  user: <put username here>
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  tasks:
+    - name: Stop unused services
+      service:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
+      with_items:
+        - cups
+        - cups-browsed
+        - speech-dispatcher
