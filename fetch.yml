@@ -1,0 +1,8 @@
+--- # Fetch module example
+- hosts: all
+  user: root
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: Copy remote hosts to manager
+      fetch: src=/etc/hosts dest=/home/michael/fetchtest/prefix-{{ ansible_hostname }} flat=yes

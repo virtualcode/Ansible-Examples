@@ -1,0 +1,11 @@
+---
+- hosts: ec2
+  remote_user: ec2-user
+  become_method: sudo
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Yum update system
+      yum: name='*' state=latest
+      register: yumout
+    - debug: var=yumout

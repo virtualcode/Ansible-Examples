@@ -1,0 +1,17 @@
+--- # GeerlingGuy debug example pg 341
+- hosts: la
+  remote_user: user
+  gather_facts: no
+  connection: ssh
+
+  tasks:
+    - name: Register output of uptime
+      command: uptime
+      register: system_uptime
+
+    - name: Print uptime
+      debug: var=system_uptime.stdout
+
+    - name: Print if command caused a change
+      debug: msg="Something changed"
+      when: system_uptime.changed
