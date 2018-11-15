@@ -1,0 +1,24 @@
+# Collection of ansible cli one liners.
+#  Some assumptions may (or may not :-) be applicable:
+#         [all] group is defined in /etc/ansible/hosts or elsewhere 
+#         ssh public key is configured for root
+#         no password required to become root
+
+
+# localhost is always defined explicitly
+ansible localhost -m ping
+ansible localhost --ask-pass -m ping
+
+ansible all -m shell -a "uptime"
+ansible -i hosts all -m ping
+ansible -i hosts all -m setup
+ansible all -m setup
+
+# using apt
+ansible all -m shell -a  "apt list"
+ansible all -b -m shell -a  "apt-get update -y"
+ansible all -b -m shell -a  "apt upgrade -y"
+ansible all -b -m shell -a  "apt autoremove -y"
+
+ansible -i hosts all --ask-pass -b -m 'apt package=libopenblas-dev state=present'
+ansible -i hosts all -b -m 'apt package=libopenblas-dev state=present'
