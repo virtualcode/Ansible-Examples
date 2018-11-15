@@ -1,0 +1,11 @@
+---
+# apt module requires aptitude
+- hosts: localhost
+  become_method: sudo
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: apt update system
+      apt: name='*' state=latest
+      register: aptout
+    - debug: var=aptout
