@@ -19,6 +19,7 @@ ansible all -m shell -a  "apt list"
 ansible all -b -m shell -a  "apt-get update -y"
 ansible all -b -m shell -a  "apt upgrade -y"
 ansible all -b -m shell -a  "apt autoremove -y"
+ansible v1 -s -m shell -a 'yum list installed | grep python'
 
 ansible -i hosts all --ask-pass -b -m 'apt package=libopenblas-dev state=present'
 ansible -i hosts all -b -m 'apt package=libopenblas-dev state=present'
