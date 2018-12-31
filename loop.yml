@@ -1,6 +1,8 @@
 --- # Loop Playbook example
-- hosts: v2
-  user: root
+- hosts: localhost
+  become: yes
+  become_user: root
+  become_methon: sudo
   connection: ssh
   gather_facts: no
   tasks:
