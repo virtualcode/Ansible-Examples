@@ -1,6 +1,8 @@
 ---
-- hosts: v1
-  remote_user: root
+- hosts: localhost
+  become: yes
+  become_user: root
+  become_method: sudo
   gather_facts: no
   tasks:
     - name: Test connections to server
