@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - aws_s3_bucket_info:
+      register: result
+
+    - name: List buckets
+      debug:
+        msg: "{{ result['buckets'] }}"
