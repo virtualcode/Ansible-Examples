@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  gather_facts: false
+  become: true
+  become_user: root
+
+
+  tasks:
+    - name: install sysstat
+      apt:
+        name: sysstat
+        state: present
+    - name: turn data collection on
+      replace:
+        path: "/etc/default/sysstat"
+        regexp: 'ENABLED="false"'
+        replace: 'ENABLED="true"'
+    - name: configure service
+      systemd:
+        name: sysstat
+        state: started
+        enabled: yes
